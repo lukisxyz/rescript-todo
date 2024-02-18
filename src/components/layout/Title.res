@@ -1,5 +1,5 @@
 @react.component
-let make = (~task: int) => {
+let make = (~task: int, ~children) => {
   let now = Js.Date.make()
   let today: string = switch Js.Date.getDay(now) {
   | 0.0 => "Sunday"
@@ -29,7 +29,7 @@ let make = (~task: int) => {
   }
 
   <div>
-    <div className="flex flex-row justify-between items-center w-full">
+    <div className="flex flex-row justify-between px-2 items-center w-full">
       <h2 className="leading-7">
         <span className="font-semibold text-3xl text-indigo-500"> {React.string(`${today}`)} </span>
         <span className="font-normal text-2xl text-indigo-500">
@@ -43,35 +43,9 @@ let make = (~task: int) => {
         <span className="font-normal"> {React.string(` ${task > 1 ? "Tasks" : "Task"}`)} </span>
       </div>
     </div>
-    <div className="text-right mt-9 relative mb-20">
+    <div className="text-right mt-9 relative mb-20 px-2">
       <div className="w-[150%] -left-6 absolute top-1/2 -translate-y-1/2 h-[1px] bg-black/10" />
-      <Button
-        onClick={_ => {
-          Console.log("Tambah")
-        }}
-        className={Utils.cn([
-          "absolute right-2 top-1/2 -translate-y-1/2 rounded-full z-10 py-7 px-[0.65rem]",
-          "bg-red-400 text-white",
-          "active:scale-105 active:ring-4 focus:ring-4",
-          "hover:bg-red-600",
-        ])}>
-        <span className="sr-only"> {React.string("Add new task")} </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-9 h-9"
-          width="44"
-          height="44"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M12 5l0 14" />
-          <path d="M5 12l14 0" />
-        </svg>
-      </Button>
+      <Modal> {children} </Modal>
     </div>
   </div>
 }

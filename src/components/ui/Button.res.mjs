@@ -2,11 +2,14 @@
 
 import * as Utils from "../../lib/Utils.res.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
+import * as ReactAriaComponents from "react-aria-components";
+
+var ReactAriaButton = {};
 
 function variantClass(v) {
   switch (v) {
     case "Default" :
-        return "bg-primary text-primary-foreground hover:bg-primary/90";
+        return "bg-primary text-primary-foreground hover:bg-indigo-600";
     case "Destructive" :
         return "bg-destructive text-destructive-foreground hover:bg-destructive/90";
     case "Outline" :
@@ -47,16 +50,17 @@ function Button(props) {
         sizeClass(size),
         className !== undefined ? className : ""
       ]);
-  return JsxRuntime.jsx("button", {
+  return JsxRuntime.jsx(ReactAriaComponents.Button, {
               children: props.children,
               className: classNames,
-              onClick: props.onClick
+              onPress: props.onClick
             });
 }
 
 var make = Button;
 
 export {
+  ReactAriaButton ,
   variantClass ,
   sizeClass ,
   make ,

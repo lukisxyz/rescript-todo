@@ -25,17 +25,13 @@ function TaskCardView(props) {
                       JsxRuntime.jsx("span", {
                             children: props.text,
                             className: "flex-grow"
-                          }),
-                      JsxRuntime.jsx("time", {
-                            children: "07:30",
-                            className: "flex-shrink-0 w-16 text-sm font-medium text-gray-400"
                           })
                     ],
                     checked: props.checked,
                     onChange: props.onChange,
                     className: "react-aria-Checkbox"
                   }),
-              className: "my-3 pb-6 pt-3 border-b"
+              className: "my-3 pb-6 px-2 pt-3 border-b"
             });
 }
 

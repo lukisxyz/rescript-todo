@@ -6,9 +6,9 @@ function Container(props) {
   return JsxRuntime.jsx("main", {
               children: JsxRuntime.jsx("div", {
                     children: props.children,
-                    className: "bg-white/90 h-[78vh] rounded-md p-6 overflow-hidden"
+                    className: "bg-white/90 h-[84vh] rounded-md p-3 overflow-hidden"
                   }),
-              className: "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[31rem] max-h-[84vh] overflow-hidden w-full mx-auto p-6"
+              className: "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[31rem] max-h-[96vh] overflow-hidden w-full mx-auto p-3"
             });
 }
 

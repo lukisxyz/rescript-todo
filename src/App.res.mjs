@@ -3,13 +3,17 @@
 import * as Title from "./components/layout/Title.res.mjs";
 import * as Container from "./components/layout/Container.res.mjs";
 import * as TaskCardView from "./components/ui/TaskCardView.res.mjs";
+import * as FormCreateTask from "./components/layout/FormCreateTask.res.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 
 function App(props) {
   return JsxRuntime.jsxs(Container.make, {
               children: [
                 JsxRuntime.jsx(Title.make, {
-                      task: 12
+                      task: 12,
+                      children: JsxRuntime.jsx("div", {
+                            children: JsxRuntime.jsx(FormCreateTask.make, {})
+                          })
                     }),
                 JsxRuntime.jsxs("div", {
                       children: [
@@ -70,7 +74,7 @@ function App(props) {
                               text: "Makan malam bareng keluarga"
                             })
                       ],
-                      className: "max-h-[56vh] overflow-y-auto scroll-m-1 scroll-container"
+                      className: "max-h-[64vh] overflow-y-auto scroll-m-1 scroll-container"
                     })
               ]
             });

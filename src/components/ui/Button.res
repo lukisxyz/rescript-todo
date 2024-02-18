@@ -1,9 +1,11 @@
-@module("react-aria-components")
-external button: (
-  ~children: React.element,
-  ~className: string,
-  ~onClick: unit => unit,
-) => React.element = "ReactAriaButton"
+module ReactAriaButton = {
+  @react.component @module("react-aria-components")
+  external make: (
+    ~children: React.element,
+    ~className: string,
+    ~onPress: JsxEventU.Mouse.t => unit,
+  ) => React.element = "Button"
+}
 
 type variant =
   | Default
@@ -21,7 +23,7 @@ type size =
 
 let variantClass = (v: variant) =>
   switch v {
-  | Default => "bg-primary text-primary-foreground hover:bg-primary/90"
+  | Default => "bg-primary text-primary-foreground hover:bg-indigo-600"
   | Destructive => "bg-destructive text-destructive-foreground hover:bg-destructive/90"
   | Outline => "border border-input hover:bg-accent hover:text-accent-foreground"
   | Secondary => "bg-secondary text-secondary-foreground hover:bg-secondary/80"
@@ -56,5 +58,5 @@ let make = (
     | None => ""
     },
   ])
-  <button className=classNames onClick> {children} </button>
+  <ReactAriaButton className=classNames onPress={onClick}> {children} </ReactAriaButton>
 }
