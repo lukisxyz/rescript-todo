@@ -2,13 +2,77 @@
 
 import * as Title from "./components/layout/Title.res.mjs";
 import * as Container from "./components/layout/Container.res.mjs";
+import * as TaskCardView from "./components/ui/TaskCardView.res.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 
 function App(props) {
-  return JsxRuntime.jsx(Container.make, {
-              children: JsxRuntime.jsx(Title.make, {
-                    task: 12
-                  })
+  return JsxRuntime.jsxs(Container.make, {
+              children: [
+                JsxRuntime.jsx(Title.make, {
+                      task: 12
+                    }),
+                JsxRuntime.jsxs("div", {
+                      children: [
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan siang"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan malam bareng keluarga, makan di warung steak"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Perbaiki komputer rumah"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan siang"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan malam bareng keluarga"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Perbaiki komputer rumah"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan siang"
+                            }),
+                        JsxRuntime.jsx(TaskCardView.make, {
+                              checked: false,
+                              onChange: (function (param) {
+                                  console.log("Checked");
+                                }),
+                              text: "Makan malam bareng keluarga"
+                            })
+                      ],
+                      className: "max-h-[56vh] overflow-y-auto scroll-m-1 scroll-container"
+                    })
+              ]
             });
 }
 

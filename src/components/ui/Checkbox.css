@@ -1,0 +1,72 @@
+.react-aria-Checkbox {
+  display: flex;
+  align-items: baseline;
+  gap: 0.571rem;
+  font-size: 1.143rem;
+  color: #f87171; /* Indigo 500 */
+  forced-color-adjust: none;
+}
+
+.react-aria-Checkbox .checkbox {
+  width: 1.143rem;
+  height: 1.143rem;
+  border: 2px solid #cacaca; /* Gray 300 */
+  border-radius: 4px;
+  transition: all 200ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-aria-Checkbox svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: #fff; /* White */
+  stroke-width: 3px;
+  stroke-dasharray: 22px;
+  stroke-dashoffset: 66;
+  transition: all 200ms;
+}
+
+.react-aria-Checkbox[data-pressed] .checkbox {
+  border-color: #cacaca; /* Gray 300 */
+}
+
+.react-aria-Checkbox span {
+  color: #212121; /* Gray 300 */
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.react-aria-Checkbox[data-selected] span {
+  color: #a5a5a5; /* Gray 300 */
+  text-decoration: line-through;
+}
+
+.react-aria-Checkbox[data-focus-visible] .checkbox {
+  outline: 2px solid #fd9393; /* Indigo 200 */
+  outline-offset: 2px;
+}
+
+.react-aria-Checkbox[data-selected] .checkbox,
+.react-aria-Checkbox[data-indeterminate] .checkbox {
+  border-color: #f87171; /* Indigo 500 */
+  background: #f87171; /* Indigo 500 */
+}
+
+.react-aria-Checkbox[data-selected][data-pressed] .checkbox,
+.react-aria-Checkbox[data-indeterminate][data-pressed] .checkbox {
+  border-color: #f87171; /* Indigo 500 */
+  background: #f87171; /* Indigo 500 */
+}
+
+.react-aria-Checkbox[data-selected] svg,
+.react-aria-Checkbox[data-indeterminate] svg {
+  stroke-dashoffset: 44;
+}
+
+.react-aria-Checkbox[data-indeterminate] svg {
+  stroke: none;
+  fill: #f87171; /* Indigo 500 */
+}

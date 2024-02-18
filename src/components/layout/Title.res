@@ -28,18 +28,50 @@ let make = (~task: int) => {
   | _ => "Invalid month number"
   }
 
-  <div className="flex flex-row justify-between items-center w-full">
-    <h2 className="leading-7">
-      <span className="font-semibold text-2xl text-indigo-500"> {React.string(`${today}`)} </span>
-      <span className="font-normal text-xl text-indigo-500">
-        {React.string(`, ${Js.Float.toString(todayDate)} ${Utils.getOrdinalSuffix(todayDate)}`)}
-      </span>
-      <br />
-      <span className="font-light text-gray-400"> {React.string(month)} </span>
-    </h2>
-    <div className="text-gray-400 text-lg">
-      <span className="font-normal"> {React.string(`${Js.Int.toString(task)}`)} </span>
-      <span className="font-light"> {React.string(` ${task > 1 ? "tasks" : "task"}`)} </span>
+  <div>
+    <div className="flex flex-row justify-between items-center w-full">
+      <h2 className="leading-7">
+        <span className="font-semibold text-3xl text-indigo-500"> {React.string(`${today}`)} </span>
+        <span className="font-normal text-2xl text-indigo-500">
+          {React.string(`, ${Js.Float.toString(todayDate)} ${Utils.getOrdinalSuffix(todayDate)}`)}
+        </span>
+        <br />
+        <span className="font-normal text-base text-gray-500"> {React.string(month)} </span>
+      </h2>
+      <div className="text-gray-500 text-lg mr-3">
+        <span className="font-medium"> {React.string(`${Js.Int.toString(task)}`)} </span>
+        <span className="font-normal"> {React.string(` ${task > 1 ? "Tasks" : "Task"}`)} </span>
+      </div>
+    </div>
+    <div className="text-right mt-9 relative mb-20">
+      <div className="w-[150%] -left-6 absolute top-1/2 -translate-y-1/2 h-[1px] bg-black/10" />
+      <Button
+        onClick={_ => {
+          Console.log("Tambah")
+        }}
+        className={Utils.cn([
+          "absolute right-2 top-1/2 -translate-y-1/2 rounded-full z-10 py-7 px-[0.65rem]",
+          "bg-red-400 text-white",
+          "active:scale-105 active:ring-4 focus:ring-4",
+          "hover:bg-red-600",
+        ])}>
+        <span className="sr-only"> {React.string("Add new task")} </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-9 h-9"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+      </Button>
     </div>
   </div>
 }
