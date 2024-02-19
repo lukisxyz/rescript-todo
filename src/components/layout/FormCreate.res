@@ -38,10 +38,12 @@ let make = (~onSubmitEvent: unit => unit) => {
     setText(_ => value)
   }
 
-  React.useEffect0(() => {
-    setText(_ => "")
+  React.useEffect1(() => {
+    if isModalOpen {
+      setText(_ => "")
+    }
     None
-  })
+  }, [isModalOpen])
 
   let handleSubmit = (v: string) => {
     try {

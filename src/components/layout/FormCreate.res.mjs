@@ -29,6 +29,7 @@ function FormCreate(props) {
         return false;
       });
   var setOpenModal = match$1[1];
+  var isModalOpen = match$1[0];
   var handleInputChange = function ($$event) {
     var value = $$event.currentTarget.value;
     setText(function (param) {
@@ -36,10 +37,13 @@ function FormCreate(props) {
         });
   };
   React.useEffect((function () {
-          setText(function (param) {
-                return "";
-              });
-        }), []);
+          if (isModalOpen) {
+            setText(function (param) {
+                  return "";
+                });
+          }
+          
+        }), [isModalOpen]);
   var handleOpenModal = function (param) {
     setOpenModal(function (param) {
           return true;
@@ -213,7 +217,7 @@ function FormCreate(props) {
                             className: "h-screen w-screen bg-black/50 z-50"
                           }),
                       isDismissable: true,
-                      isOpen: match$1[0],
+                      isOpen: isModalOpen,
                       onOpenChange: handleOverlayModal
                     })
               ]
