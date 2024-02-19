@@ -1,5 +1,5 @@
 @react.component
-let make = (~task: int, ~children) => {
+let make = (~task: int) => {
   let now = Js.Date.make()
   let today: string = switch Js.Date.getDay(now) {
   | 0.0 => "Sunday"
@@ -42,10 +42,6 @@ let make = (~task: int, ~children) => {
         <span className="font-medium"> {React.string(`${Js.Int.toString(task)}`)} </span>
         <span className="font-normal"> {React.string(` ${task > 1 ? "Tasks" : "Task"}`)} </span>
       </div>
-    </div>
-    <div className="text-right mt-9 relative mb-20 px-2">
-      <div className="w-[150%] -left-6 absolute top-1/2 -translate-y-1/2 h-[1px] bg-black/10" />
-      <Modal> {children} </Modal>
     </div>
   </div>
 }

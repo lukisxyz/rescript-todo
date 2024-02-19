@@ -2,6 +2,8 @@
 
 @module("tailwind-merge") external twMerge: string => string = "twMerge"
 
+@module("react-hot-toast") external toast: string => unit = "toast"
+
 let cn = (input: array<string>) => {
   twMerge(clsx(input))
 }
@@ -16,3 +18,5 @@ let getOrdinalSuffix = (num: float): string => {
   }
   suffix
 }
+
+let notify = (m: string) => toast(m)

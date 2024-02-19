@@ -16,10 +16,57 @@ module ReactAriaModal = {
   ) => React.element = "Modal"
 }
 
+module TextArea = {
+  @react.component @module("react-aria-components")
+  external make: (
+    ~label: string,
+    ~name: string,
+    ~className: string,
+    ~maxLength: int,
+    ~value: string,
+    ~onChange: _ => unit,
+  ) => React.element = "TextArea"
+}
+
 @react.component
-let make = (~children) => {
+let make = (~onSubmitEvent: unit => unit) => {
+  let (text, setText) = React.useState(() => "")
   let (isModalOpen, setOpenModal) = React.useState(() => false)
 
+  let handleInputChange = event => {
+    let value = ReactEvent.Form.currentTarget(event)["value"]
+    setText(_ => value)
+  }
+
+  React.useEffect0(() => {
+    setText(_ => "")
+    None
+  })
+
+  let handleSubmit = (v: string) => {
+    try {
+      let key = Ulid.generateULID()
+      let currentKey = LocalStorage.getItem("key")
+      LocalStorage.setItem(key, v)
+      if currentKey == "" {
+        LocalStorage.setItem("key", key)
+      } else {
+        LocalStorage.setItem("key", key ++ "," ++ currentKey)
+      }
+
+      let _ = LocalStorage.getItem(key)
+      onSubmitEvent()
+      setOpenModal(_ => false)
+      Utils.notify("Success create new task todo")
+    } catch {
+    | Js.Exn.Error(obj) =>
+      switch Js.Exn.message(obj) {
+      | Some(m) => Utils.notify(m)
+      | None => ()
+      }
+      setOpenModal(_ => false)
+    }
+  }
   let handleOpenModal = (_: JsxEventU.Mouse.t) => {
     setOpenModal(_ => true)
   }
@@ -31,6 +78,7 @@ let make = (~children) => {
   let handleOverlayModal = (_: bool) => {
     setOpenModal(_ => false)
   }
+
   <ReactAriaDialogTrigger>
     <Button
       onClick={handleOpenModal}
@@ -87,7 +135,25 @@ let make = (~children) => {
                 <path d="M5 12l14 0" />
               </svg>
             </Button>
-            <div className="px-6 py-16 h-full w-full"> {children} </div>
+            <div className="px-6 py-16 h-full w-full">
+              <h1 className="text-2xl text-primary"> {React.string("Create New Task Todo")} </h1>
+              <br />
+              <form>
+                <label htmlFor="task"> {React.string("Task:")} </label>
+                <br />
+                <TextArea
+                  label="Todo:"
+                  maxLength=120
+                  name="task"
+                  className="h-32 p-2 w-full border"
+                  value=text
+                  onChange={handleInputChange}
+                />
+                <br />
+                <br />
+                <Button onClick={_ => handleSubmit(text)}> {React.string("Save")} </Button>
+              </form>
+            </div>
           </div>
         </div>
       </ReactAriaDialog>

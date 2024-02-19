@@ -2,6 +2,7 @@
 
 import * as Clsx from "clsx";
 import * as TailwindMerge from "tailwind-merge";
+import * as ReactHotToast from "react-hot-toast";
 
 function cn(input) {
   return TailwindMerge.twMerge(Clsx.clsx(input));
@@ -45,8 +46,13 @@ function getOrdinalSuffix(num) {
   }
 }
 
+function notify(m) {
+  ReactHotToast.toast(m);
+}
+
 export {
   cn ,
   getOrdinalSuffix ,
+  notify ,
 }
 /* clsx Not a pure module */
